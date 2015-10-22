@@ -1,0 +1,6 @@
+---
+
+- hosts: ezcluster
+  user: root
+  tasks:
+   - hostname: name=myhostname
