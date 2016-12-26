@@ -2,12 +2,11 @@ FROM centos:7
 
 MAINTAINER "Björn Dieding" <bjoern@xrow.de>
 
-VOLUME ["/run", "/tmp", "/sys/fs/cgroup"]
-#RUN yum -y swap -- remove systemd-container systemd-container-libs -- install systemd systemd-libs
 ADD RPM-GPG-KEY-EPEL-7 /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
 ADD epel.repo /etc/yum.repos.d/epel.repo
 
-RUN yum install -y ansible
+USER root
+RUN yum install -y ansible dbus
 RUN yum -y install python-pip redis
 RUN pip install redis
 ADD test.yml test.yml
